@@ -10,7 +10,7 @@ on:
       home:
         description: 'location'
         required: false
-	
+
 
 jobs:
 
@@ -23,14 +23,14 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag softether:latest
 
-	- name: Run Container
-	  run: docker run -dit --rm --name softether localhost/softether:latest bash
-	  
-	- name: Copy File From Container
-	  run: docker cp softether:/home/user/software /mnt
-	  
-	- name: Upload firmware directory
-	  uses: actions/upload-artifact@main
-	  with:
-	  	name: softether_software
-	  	path: /mnt/software
+    - name: Run Container
+      run: docker run -dit --rm --name softether localhost/softether:latest bash
+
+    - name: Copy file from container
+      run: docker cp softether:/home/user/software /mnt
+
+    - name: Upload firmware directory
+      uses: actions/upload-artifact@main
+      with:
+        name: softether_software
+        path: /mnt/software
