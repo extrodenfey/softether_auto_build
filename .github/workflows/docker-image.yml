@@ -15,10 +15,10 @@ jobs:
       run: docker build . --file Dockerfile --tag softether:latest
 
     - name: Run Container
-      run: docker run -dit --rm --name softether softether:latest bash
+      run: sudo docker run -dit --rm --name softether softether:latest bash
 
     - name: Copy file from container
-      run: docker cp softether:/home/user/software /mnt
+      run: sudo docker cp softether:/home/user/software /mnt
 
     - name: Upload firmware directory
       uses: actions/upload-artifact@main
