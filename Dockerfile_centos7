@@ -3,7 +3,8 @@ FROM centos:7
 RUN yum install epel-release -y &&\
         yum update -y &&\
         yum -y groupinstall "Development Tools" &&\
-        yum -y install cmake ncurses-devel openssl-devel readline-devel zlib-devel sudo  &&\
+        yum -y install  ncurses-devel openssl-devel readline-devel zlib-devel cmake3.x86_64 sudo  &&\
+        ln -s /usr/bin/cmake3 /usr/bin/cmake && \
         useradd -m user && \
         echo 'user ALL=NOPASSWD: ALL' > /etc/sudoers.d/user &&\
         cd /home/user &&\
