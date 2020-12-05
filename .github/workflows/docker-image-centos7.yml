@@ -1,0 +1,27 @@
+name: Docker Image CI
+
+on:
+    workflow_dispatch:
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile_centos7 --tag softether:latest
+
+    - name: Run Container
+      run: sudo docker run -dit --rm --name softether softether:latest bash
+
+    - name: Copy file from container
+      run: sudo docker cp softether:/home/user/software /mnt
+
+    - name: Upload firmware directory
+      uses: actions/upload-artifact@main
+      with:
+        name: softether_software
+        path: /mnt/software
