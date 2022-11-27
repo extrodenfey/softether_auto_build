@@ -1,6 +1,7 @@
 FROM centos:7
 
 RUN yum install epel-release -y &&\
+        yum -y install libsodium &&\
         yum update -y &&\
         yum -y groupinstall "Development Tools" &&\
         yum -y install  ncurses-devel openssl-devel readline-devel zlib-devel cmake3.x86_64 sudo  &&\
