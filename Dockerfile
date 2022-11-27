@@ -4,6 +4,7 @@ RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-Linux-*
 RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.epel.cloud|g' /etc/yum.repos.d/CentOS-Linux-*
 RUN yum install epel-release -y &&\
         yum update -y &&\
+        yum install libsodium libsodium-devel -y &&\
         yum -y groupinstall "Development Tools" &&\
         yum -y install cmake ncurses-devel openssl-devel readline-devel zlib-devel sudo  &&\
         useradd -m user && \
